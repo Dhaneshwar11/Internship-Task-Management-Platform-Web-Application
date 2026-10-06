@@ -11,12 +11,10 @@ import {
   Sparkles,
   UserCheck,
   Cloud,
-  Download,
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { UserRole } from '../../types';
 import { UserAvatar } from '../common/UserAvatar';
-import { ExportZipModal } from '../common/ExportZipModal';
 
 export const LoginPage: React.FC = () => {
   const { login, availableUsers } = useApp();
@@ -27,7 +25,6 @@ export const LoginPage: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isExportZipOpen, setIsExportZipOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,17 +90,6 @@ export const LoginPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50/80 text-slate-900 flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden font-sans selection:bg-black selection:text-white">
-      {/* Top Floating Download Bar */}
-      <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
-        <button
-          onClick={() => setIsExportZipOpen(true)}
-          className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-900 border border-slate-300 text-xs font-semibold transition-all shadow-sm hover:shadow cursor-pointer"
-        >
-          <Download className="w-3.5 h-3.5 text-black" />
-          <span>Download Project ZIP</span>
-        </button>
-      </div>
-
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         {/* Brand Header */}
         <div className="text-center space-y-2">
@@ -256,18 +242,6 @@ export const LoginPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Download ZIP Banner */}
-          <div className="pt-2">
-            <button
-              type="button"
-              onClick={() => setIsExportZipOpen(true)}
-              className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 hover:border-black text-slate-900 text-xs font-semibold transition-all cursor-pointer shadow-sm"
-            >
-              <Download className="w-4 h-4 text-black" />
-              <span>Download Project ZIP Archive</span>
-            </button>
-          </div>
-
           {/* Footer Security Badges */}
           <div className="pt-2 text-center text-[11px] text-slate-400 flex items-center justify-center gap-3">
             <span className="flex items-center gap-1">
@@ -282,11 +256,6 @@ export const LoginPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Export ZIP Modal */}
-      <ExportZipModal
-        isOpen={isExportZipOpen}
-        onClose={() => setIsExportZipOpen(false)}
-      />
     </div>
   );
 };
