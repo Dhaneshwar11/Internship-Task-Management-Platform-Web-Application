@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Bell,
-  Download,
   RotateCcw,
   LogOut,
   ChevronDown,
@@ -10,7 +9,6 @@ import {
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { UserRole } from '../../types';
-import { ExportZipModal } from '../common/ExportZipModal';
 import { UserAvatar } from '../common/UserAvatar';
 
 const roleBadgeMap: Record<UserRole, { label: string; color: string }> = {
@@ -36,7 +34,6 @@ export const Navbar: React.FC = () => {
 
   const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false);
   const [isNotifOpen, setIsNotifOpen] = useState(false);
-  const [isExportZipOpen, setIsExportZipOpen] = useState(false);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -79,16 +76,6 @@ export const Navbar: React.FC = () => {
 
           {/* Right Controls */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Quick ZIP Export */}
-            <button
-              onClick={() => setIsExportZipOpen(true)}
-              title="Download Complete Source Code, Schema & Data ZIP"
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300 transition-colors shadow-xs cursor-pointer"
-            >
-              <Download className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Download ZIP</span>
-            </button>
-
             {/* Notifications Menu */}
             <div className="relative">
               <button
@@ -256,11 +243,6 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Export ZIP Modal */}
-      <ExportZipModal
-        isOpen={isExportZipOpen}
-        onClose={() => setIsExportZipOpen(false)}
-      />
     </>
   );
 };
