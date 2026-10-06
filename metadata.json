@@ -1,0 +1,6 @@
+{
+  "name": "Heloix WorkHub - Internship & Task Management Platform",
+  "description": "Centralized hiring, digital onboarding, mentor-guided task management, attendance with work reports, performance escalation, and certification platform for Heloix Startup Minds.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
